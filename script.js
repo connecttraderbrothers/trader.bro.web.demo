@@ -36,14 +36,42 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         if (!target) return;
         
         const headerHeight = header.offsetHeight;
-        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight;
+        // Add extra offset so section headers appear properly at top
+        const extraOffset = 40;
+        const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
         
-        window.scrollTo({
-            top: targetPosition,
-            behavior: 'smooth'
-        });
+        // Use smooth easing animation
+        smoothScrollTo(targetPosition, 1200);
     });
 });
+
+// Custom smooth scroll function with easing
+function smoothScrollTo(targetPosition, duration) {
+    const startPosition = window.pageYOffset;
+    const distance = targetPosition - startPosition;
+    let startTime = null;
+    
+    function easeInOutCubic(t) {
+        return t < 0.5 
+            ? 4 * t * t * t 
+            : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+    
+    function animation(currentTime) {
+        if (startTime === null) startTime = currentTime;
+        const timeElapsed = currentTime - startTime;
+        const progress = Math.min(timeElapsed / duration, 1);
+        const easedProgress = easeInOutCubic(progress);
+        
+        window.scrollTo(0, startPosition + distance * easedProgress);
+        
+        if (timeElapsed < duration) {
+            requestAnimationFrame(animation);
+        }
+    }
+    
+    requestAnimationFrame(animation);
+}
 
 // ===== Header Scroll Effect =====
 let lastScroll = 0;
@@ -75,7 +103,7 @@ let isTransitioning = false;
 
 function updateSlider(animate = true) {
     if (animate) {
-        slider.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
+        slider.style.transition = 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     } else {
         slider.style.transition = 'none';
     }
@@ -99,7 +127,7 @@ function nextSlide() {
     
     setTimeout(() => {
         isTransitioning = false;
-    }, 600);
+    }, 800);
 }
 
 function prevSlide() {
@@ -111,7 +139,7 @@ function prevSlide() {
     
     setTimeout(() => {
         isTransitioning = false;
-    }, 600);
+    }, 800);
 }
 
 function startAutoSlide() {
@@ -243,7 +271,7 @@ const observer = new IntersectionObserver((entries) => {
 document.querySelectorAll('.about-card, .review-card, .stat').forEach(el => {
     el.style.opacity = '0';
     el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+    el.style.transition = 'opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1), transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
     observer.observe(el);
 });
 
@@ -261,7 +289,7 @@ document.head.appendChild(style);
 document.querySelectorAll('.about-grid, .reviews-grid, .stats-row').forEach(grid => {
     const items = grid.children;
     Array.from(items).forEach((item, index) => {
-        item.style.transitionDelay = `${index * 0.1}s`;
+        item.style.transitionDelay = `${index * 0.15}s`;
     });
 });
 

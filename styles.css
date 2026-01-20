@@ -15,9 +15,9 @@
     --font-display: 'Cormorant Garamond', Georgia, serif;
     --font-body: 'Montserrat', -apple-system, sans-serif;
     
-    --transition-fast: 0.2s ease;
-    --transition-medium: 0.4s ease;
-    --transition-slow: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-medium: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 *, *::before, *::after {
@@ -28,6 +28,7 @@
 
 html {
     scroll-behavior: smooth;
+    scroll-padding-top: 100px;
 }
 
 body {
@@ -142,7 +143,7 @@ nav a {
     letter-spacing: 0.5px;
     position: relative;
     padding: 0.5rem 0;
-    transition: var(--transition-fast);
+    transition: color var(--transition-medium);
 }
 
 nav a:not(.nav-cta)::after {
@@ -153,7 +154,7 @@ nav a:not(.nav-cta)::after {
     width: 0;
     height: 1px;
     background: var(--gold);
-    transition: var(--transition-medium);
+    transition: width var(--transition-medium);
 }
 
 nav a:not(.nav-cta):hover::after {
@@ -170,7 +171,7 @@ nav a:hover {
     padding: 0.75rem 1.5rem;
     border-radius: 2px;
     font-weight: 600;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
 }
 
 .nav-cta:hover {
@@ -306,7 +307,7 @@ nav a:hover {
     font-weight: 600;
     text-decoration: none;
     border-radius: 2px;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
     letter-spacing: 0.5px;
 }
 
@@ -330,6 +331,7 @@ nav a:hover {
 .cta-button.secondary:hover {
     border-color: var(--gold);
     color: var(--gold);
+    background: rgba(212, 175, 55, 0.1);
 }
 
 /* Scroll Indicator */
@@ -463,7 +465,7 @@ section {
     background: var(--white);
     padding: 2.5rem;
     border-radius: 4px;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
     border: 1px solid var(--gray-200);
     position: relative;
     overflow: hidden;
@@ -479,12 +481,13 @@ section {
     background: var(--gold);
     transform: scaleX(0);
     transform-origin: left;
-    transition: var(--transition-medium);
+    transition: transform var(--transition-medium);
 }
 
 .about-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    background: var(--white);
 }
 
 .about-card:hover::before {
@@ -539,7 +542,7 @@ section {
 
 .slider {
     display: flex;
-    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .slide {
@@ -598,7 +601,7 @@ section {
     background: transparent;
     color: var(--gold);
     cursor: pointer;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -608,12 +611,17 @@ section {
 .slider-btn svg {
     width: 20px;
     height: 20px;
+    transition: transform var(--transition-fast);
 }
 
 .slider-btn:hover {
     background: var(--gold);
     color: var(--black);
     border-color: var(--gold);
+}
+
+.slider-btn:hover svg {
+    transform: scale(1.1);
 }
 
 .slider-progress {
@@ -637,7 +645,7 @@ section {
     height: 100%;
     background: var(--gold);
     width: 25%;
-    transition: var(--transition-medium);
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 /* ===== Reviews Section ===== */
@@ -657,7 +665,7 @@ section {
     background: var(--white);
     padding: 2.5rem;
     border-radius: 4px;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
     border: 1px solid var(--gray-200);
     display: flex;
     flex-direction: column;
@@ -666,11 +674,18 @@ section {
 .review-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    background: var(--white);
 }
 
 .review-card.featured {
     background: var(--black);
     border-color: var(--gold);
+    transition: all var(--transition-medium);
+}
+
+.review-card.featured:hover {
+    background: var(--black-light);
+    box-shadow: 0 20px 40px rgba(212, 175, 55, 0.2);
 }
 
 .review-card.featured .review-text {
@@ -817,7 +832,7 @@ section {
     color: var(--white);
     font-family: var(--font-body);
     font-size: 1rem;
-    transition: var(--transition-fast);
+    transition: all var(--transition-medium);
 }
 
 .contact-form input:focus,
@@ -825,6 +840,7 @@ section {
     outline: none;
     border-color: var(--gold);
     background: rgba(212, 175, 55, 0.05);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
 }
 
 .contact-form textarea {
@@ -847,14 +863,14 @@ section {
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: var(--transition-medium);
+    transition: all var(--transition-medium);
     letter-spacing: 0.5px;
 }
 
 .submit-btn svg {
     width: 18px;
     height: 18px;
-    transition: var(--transition-fast);
+    transition: transform var(--transition-medium);
 }
 
 .submit-btn:hover {
@@ -905,7 +921,7 @@ footer {
     color: var(--gray-300);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: var(--transition-fast);
+    transition: color var(--transition-medium);
 }
 
 .footer-links a:hover {

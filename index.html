@@ -10,12 +10,46 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loader-content">
+            <div class="loader-logo">
+                <img src="https://github.com/connecttraderbrothers/Trader.bro.logo/blob/main/IMG_3005.png?raw=true" alt="Trader Brothers">
+            </div>
+            <div class="loader-text">
+                <span class="loader-name">Tr<span class="gold shimmer">a</span>der Brothers</span>
+                <span class="loader-tagline">Construction</span>
+            </div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="custom-cursor" id="customCursor"></div>
+    <div class="cursor-follower" id="cursorFollower"></div>
+
+    <!-- Floating Contact Button -->
+    <a href="#contact" class="floating-cta" id="floatingCta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+        </svg>
+        <span>Get a Quote</span>
+    </a>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" aria-label="Close lightbox">&times;</button>
+        <img src="" alt="Gallery image" class="lightbox-image" id="lightboxImage">
+    </div>
+
     <header>
         <div class="header-inner">
             <a href="#home" class="logo-container">
                 <img src="https://github.com/connecttraderbrothers/Trader.bro.logo/blob/main/IMG_3005.png?raw=true" alt="Trader Brothers" class="logo">
                 <div class="company-name">
-                    <span class="name-main">Tr<span class="gold">a</span>der Brothers</span>
+                    <span class="name-main">Tr<span class="gold shimmer">a</span>der Brothers</span>
                     <span class="name-tagline">Construction</span>
                 </div>
             </a>
@@ -26,25 +60,28 @@
             </button>
             <nav>
                 <ul>
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#portfolio">Gallery</a></li>
-                    <li><a href="#reviews">Testimonials</a></li>
-                    <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+                    <li><a href="#home" class="magnetic-btn">Home</a></li>
+                    <li><a href="#about" class="magnetic-btn">About</a></li>
+                    <li><a href="#services" class="magnetic-btn">Services</a></li>
+                    <li><a href="#portfolio" class="magnetic-btn">Gallery</a></li>
+                    <li><a href="#reviews" class="magnetic-btn">Testimonials</a></li>
+                    <li><a href="#contact" class="nav-cta magnetic-btn">Get a Quote</a></li>
                 </ul>
             </nav>
         </div>
     </header>
 
     <section id="home">
+        <div class="hero-parallax" id="heroParallax"></div>
         <div class="hero-overlay"></div>
+        <div class="noise-overlay"></div>
         <div class="hero-content">
-            <p class="hero-subtitle">Excellence in Craftsmanship</p>
-            <h1>Building Dream<br><span class="gold">Spaces</span></h1>
-            <p class="hero-description">Premium construction services delivering exceptional quality, timeless design, and uncompromising attention to detail.</p>
+            <p class="hero-subtitle text-reveal">Excellence in Craftsmanship</p>
+            <h1 class="text-reveal">Building Dream<br><span class="gold shimmer">Spaces</span></h1>
+            <p class="hero-description text-reveal">Premium construction services delivering exceptional quality, timeless design, and uncompromising attention to detail.</p>
             <div class="hero-cta">
-                <a href="#contact" class="cta-button primary">Start Your Project</a>
-                <a href="#portfolio" class="cta-button secondary">View Our Work</a>
+                <a href="#contact" class="cta-button primary magnetic-btn">Start Your Project</a>
+                <a href="#portfolio" class="cta-button secondary magnetic-btn">View Our Work</a>
             </div>
         </div>
         <div class="scroll-indicator">
@@ -55,8 +92,8 @@
 
     <section id="about">
         <div class="section-header">
-            <p class="section-label">Who We Are</p>
-            <h2 class="section-title">Crafting Excellence<br>Since 2014</h2>
+            <p class="section-label text-reveal">Who We Are</p>
+            <h2 class="section-title text-reveal">Crafting Excellence<br>Since 2014</h2>
         </div>
         <div class="about-content">
             <div class="about-text">
@@ -115,36 +152,109 @@
         </div>
     </section>
 
+    <!-- Services Section -->
+    <section id="services">
+        <div class="noise-overlay"></div>
+        <div class="section-header light">
+            <p class="section-label text-reveal">What We Do</p>
+            <h2 class="section-title text-reveal">Our<br>Services</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+                        <polyline points="9 22 9 12 15 12 15 22"/>
+                    </svg>
+                </div>
+                <h3>New Builds</h3>
+                <p>Complete home construction from foundation to finish, tailored to your vision and lifestyle.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="1" y="4" width="22" height="16" rx="2" ry="2"/>
+                        <line x1="1" y1="10" x2="23" y2="10"/>
+                    </svg>
+                </div>
+                <h3>Extensions</h3>
+                <p>Expand your living space with seamless extensions that complement your existing property.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                    </svg>
+                </div>
+                <h3>Renovations</h3>
+                <p>Transform your existing space with expert renovation services that breathe new life into your home.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"/>
+                    </svg>
+                </div>
+                <h3>Interior Design</h3>
+                <p>Bespoke interior solutions that reflect your personality and elevate your everyday living.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <rect x="3" y="3" width="7" height="7"/>
+                        <rect x="14" y="3" width="7" height="7"/>
+                        <rect x="14" y="14" width="7" height="7"/>
+                        <rect x="3" y="14" width="7" height="7"/>
+                    </svg>
+                </div>
+                <h3>Kitchen Fitting</h3>
+                <p>Custom kitchen installations combining functionality with stunning aesthetics.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M9 6 6.5 3.5a1.5 1.5 0 0 0-1-.5C4.683 3 4 3.683 4 4.5V17a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-5"/>
+                        <line x1="10" y1="5" x2="8" y2="19"/>
+                        <line x1="14" y1="5" x2="12" y2="19"/>
+                        <line x1="4" y1="12" x2="20" y2="12"/>
+                    </svg>
+                </div>
+                <h3>Bathroom Remodels</h3>
+                <p>Luxurious bathroom transformations that create your perfect personal sanctuary.</p>
+            </div>
+        </div>
+    </section>
+
     <section id="portfolio">
         <div class="section-header light">
-            <p class="section-label">Our Work</p>
-            <h2 class="section-title">Featured<br>Gallery</h2>
+            <p class="section-label text-reveal">Our Work</p>
+            <h2 class="section-title text-reveal">Featured<br>Gallery</h2>
         </div>
         <div class="slider-container">
             <div class="slider">
                 <div class="slide">
-                    <img src="https://rettiecdn.co.uk/cdn-cgi/imagedelivery/BAMl0GV25j7hQSkc6ATqEw/ac3e22a5-74d6-4ee3-945c-2fd3ac8f3a00/public" alt="Modern Home">
+                    <img src="https://rettiecdn.co.uk/cdn-cgi/imagedelivery/BAMl0GV25j7hQSkc6ATqEw/ac3e22a5-74d6-4ee3-945c-2fd3ac8f3a00/public" alt="Modern Home" class="gallery-image">
                     <div class="slide-caption">
                         <h3>Modern Arts & Crafts Feature Home</h3>
                         <p>A stunning blend of historic character with contemporary living spaces</p>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="https://cdn-kfgaf.nitrocdn.com/fNiDzOmNNSfuApOifmGJrljlbRHsTLNS/assets/images/optimized/rev-3ff4424/www.johnwebsterarchitecture.co.uk/wp-content/uploads/2022/10/house-5.jpg" alt="Indoor-Outdoor Living">
+                    <img src="https://cdn-kfgaf.nitrocdn.com/fNiDzOmNNSfuApOifmGJrljlbRHsTLNS/assets/images/optimized/rev-3ff4424/www.johnwebsterarchitecture.co.uk/wp-content/uploads/2022/10/house-5.jpg" alt="Indoor-Outdoor Living" class="gallery-image">
                     <div class="slide-caption">
                         <h3>Indoor-Outdoor Living Concept</h3>
                         <p>The perfect blend of interior comfort and natural surroundings</p>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="https://github.com/connecttraderbrothers/Dracula.concept/blob/main/IMG_5684.JPG?raw=true" alt="Gothic Apartment">
+                    <img src="https://github.com/connecttraderbrothers/Dracula.concept/blob/main/IMG_5684.JPG?raw=true" alt="Gothic Apartment" class="gallery-image">
                     <div class="slide-caption">
                         <h3>Historic Gothic Inspired Apartment</h3>
                         <p>Bold, elegant and striking interior transformation</p>
                     </div>
                 </div>
                 <div class="slide">
-                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200" alt="Apartment Complex">
+                    <img src="https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?w=1200" alt="Apartment Complex" class="gallery-image">
                     <div class="slide-caption">
                         <h3>Urban Apartment Complex</h3>
                         <p>50-unit residential building in prime downtown location</p>
@@ -152,7 +262,7 @@
                 </div>
             </div>
             <div class="slider-controls">
-                <button class="slider-btn prev" aria-label="Previous slide">
+                <button class="slider-btn prev magnetic-btn" aria-label="Previous slide">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M15 18l-6-6 6-6"/>
                     </svg>
@@ -162,7 +272,7 @@
                     <div class="progress-bar"><div class="progress-fill"></div></div>
                     <span class="total">04</span>
                 </div>
-                <button class="slider-btn next" aria-label="Next slide">
+                <button class="slider-btn next magnetic-btn" aria-label="Next slide">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M9 18l6-6-6-6"/>
                     </svg>
@@ -173,8 +283,8 @@
 
     <section id="reviews">
         <div class="section-header">
-            <p class="section-label">Testimonials</p>
-            <h2 class="section-title">What Our<br>Clients Say</h2>
+            <p class="section-label text-reveal">Testimonials</p>
+            <h2 class="section-title text-reveal">What Our<br>Clients Say</h2>
         </div>
         <div class="reviews-grid">
             <div class="review-card">
@@ -229,10 +339,11 @@
     </section>
 
     <section id="contact">
+        <div class="noise-overlay"></div>
         <div class="contact-wrapper">
             <div class="contact-info">
-                <p class="section-label">Get In Touch</p>
-                <h2 class="section-title light">Let's Build<br>Something<br><span class="gold">Extraordinary</span></h2>
+                <p class="section-label text-reveal">Get In Touch</p>
+                <h2 class="section-title light text-reveal">Let's Build<br>Something<br><span class="gold shimmer">Extraordinary</span></h2>
                 <p class="contact-description">Ready to start your project? Get in touch today for a free consultation and quote.</p>
                 <div class="contact-details">
                     <div class="contact-item">
@@ -247,7 +358,7 @@
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
                         </svg>
-                        <span>traderbrotherslimited@.com</span>
+                        <span>traderbrotherslimited@gmail.com</span>
                     </div>
                 </div>
             </div>
@@ -270,7 +381,7 @@
                     <label for="message">Project Details</label>
                     <textarea id="message" name="message" rows="5" required></textarea>
                 </div>
-                <button type="submit" class="submit-btn">
+                <button type="submit" class="submit-btn magnetic-btn">
                     <span>Send Message</span>
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M22 2L11 13"/>
@@ -285,13 +396,14 @@
         <div class="footer-inner">
             <div class="footer-brand">
                 <div class="company-name">
-                    <span class="name-main">Tr<span class="gold">a</span>der Brothers</span>
+                    <span class="name-main">Tr<span class="gold shimmer">a</span>der Brothers</span>
                 </div>
                 <p>Building dream spaces</p>
             </div>
             <div class="footer-links">
                 <a href="#home">Home</a>
                 <a href="#about">About</a>
+                <a href="#services">Services</a>
                 <a href="#portfolio">Gallery</a>
                 <a href="#reviews">Testimonials</a>
                 <a href="#contact">Contact</a>

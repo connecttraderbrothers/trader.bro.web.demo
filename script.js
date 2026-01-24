@@ -100,18 +100,26 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // ===== Parallax Effect =====
+    // ===== Parallax Effect (Optimized) =====
     const heroParallax = document.getElementById('heroParallax');
     
     if (heroParallax) {
+        let ticking = false;
+        
         window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const heroHeight = document.getElementById('home').offsetHeight;
-            
-            if (scrolled < heroHeight) {
-                heroParallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    const scrolled = window.pageYOffset;
+                    const heroHeight = document.getElementById('home').offsetHeight;
+                    
+                    if (scrolled < heroHeight) {
+                        heroParallax.style.transform = `translate3d(0, ${scrolled * 0.4}px, 0)`;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
             }
-        });
+        }, { passive: true });
     }
 
     // ===== Mobile Navigation =====
@@ -148,39 +156,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!target) return;
             
             const headerHeight = header ? header.offsetHeight : 0;
-            // Reduced offset for better positioning
             const extraOffset = 20;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
             
-            // Use faster, smoother scrolling
-            smoothScrollTo(targetPosition, 800);
+            // Use native smooth scrolling for best performance
+            window.scrollTo({
+                top: targetPosition,
+                behavior: 'smooth'
+            });
         });
     });
-
-    function smoothScrollTo(targetPosition, duration) {
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        let startTime = null;
-        
-        function easeOutCubic(t) {
-            return 1 - Math.pow(1 - t, 3);
-        }
-        
-        function animation(currentTime) {
-            if (startTime === null) startTime = currentTime;
-            const timeElapsed = currentTime - startTime;
-            const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeOutCubic(progress);
-            
-            window.scrollTo(0, startPosition + distance * easedProgress);
-            
-            if (timeElapsed < duration) {
-                requestAnimationFrame(animation);
-            }
-        }
-        
-        requestAnimationFrame(animation);
-    }
 
     // ===== Header Scroll Effect =====
     if (header) {
@@ -192,7 +177,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 header.classList.remove('scrolled');
             }
-        });
+        }, { passive: true });
     }
 
     // ===== Floating Contact Button =====
@@ -217,7 +202,7 @@ document.addEventListener('DOMContentLoaded', function() {
             } else {
                 floatingCta.classList.remove('at-contact');
             }
-        });
+        }, { passive: true });
     }
 
     // ===== Lightbox =====

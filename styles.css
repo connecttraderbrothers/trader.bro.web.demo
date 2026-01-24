@@ -559,6 +559,8 @@ nav a:hover {
     background: url('https://github.com/connecttraderbrothers/Trader.bro.web.background/blob/main/Screenshot%202026-01-04%20at%2013.45.48.png?raw=true') center/cover no-repeat;
     opacity: 0.5;
     will-change: transform;
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
 }
 
 .hero-overlay {

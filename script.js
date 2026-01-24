@@ -148,10 +148,12 @@ document.addEventListener('DOMContentLoaded', function() {
             if (!target) return;
             
             const headerHeight = header ? header.offsetHeight : 0;
-            const extraOffset = 40;
+            // Reduced offset for better positioning
+            const extraOffset = 20;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
             
-            smoothScrollTo(targetPosition, 1200);
+            // Use faster, smoother scrolling
+            smoothScrollTo(targetPosition, 800);
         });
     });
 
@@ -160,17 +162,15 @@ document.addEventListener('DOMContentLoaded', function() {
         const distance = targetPosition - startPosition;
         let startTime = null;
         
-        function easeInOutCubic(t) {
-            return t < 0.5 
-                ? 4 * t * t * t 
-                : 1 - Math.pow(-2 * t + 2, 3) / 2;
+        function easeOutCubic(t) {
+            return 1 - Math.pow(1 - t, 3);
         }
         
         function animation(currentTime) {
             if (startTime === null) startTime = currentTime;
             const timeElapsed = currentTime - startTime;
             const progress = Math.min(timeElapsed / duration, 1);
-            const easedProgress = easeInOutCubic(progress);
+            const easedProgress = easeOutCubic(progress);
             
             window.scrollTo(0, startPosition + distance * easedProgress);
             

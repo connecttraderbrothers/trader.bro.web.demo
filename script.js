@@ -159,13 +159,36 @@ document.addEventListener('DOMContentLoaded', function() {
             const extraOffset = 20;
             const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - extraOffset;
             
-            // Use native smooth scrolling for best performance
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
+            // Smooth, slow scroll animation
+            smoothScrollTo(targetPosition, 1400);
         });
     });
+
+    function smoothScrollTo(targetPosition, duration) {
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        let startTime = null;
+        
+        // Smooth easing function - ease in and out for comfortable viewing
+        function easeInOutQuad(t) {
+            return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
+        }
+        
+        function animation(currentTime) {
+            if (startTime === null) startTime = currentTime;
+            const timeElapsed = currentTime - startTime;
+            const progress = Math.min(timeElapsed / duration, 1);
+            const easedProgress = easeInOutQuad(progress);
+            
+            window.scrollTo(0, startPosition + distance * easedProgress);
+            
+            if (progress < 1) {
+                requestAnimationFrame(animation);
+            }
+        }
+        
+        requestAnimationFrame(animation);
+    }
 
     // ===== Header Scroll Effect =====
     if (header) {

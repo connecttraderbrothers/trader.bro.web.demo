@@ -78,9 +78,9 @@ body {
 }
 
 .loader-logo-container {
-    width: 100px;
-    height: 100px;
-    margin: 0 auto 1.5rem;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 2rem;
     position: relative;
 }
 
@@ -97,7 +97,7 @@ body {
 .outline-circle {
     stroke-dasharray: 289;
     stroke-dashoffset: 289;
-    animation: paintOutline 1.2s ease-out 0.3s forwards;
+    animation: paintOutline 2s ease-out 0.5s forwards;
     stroke-linecap: round;
 }
 
@@ -107,145 +107,151 @@ body {
     }
 }
 
-/* ===== Professional Paint Brush ===== */
+/* ===== Traditional Angled Decorator's Brush ===== */
 .paint-brush {
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 55px;
-    height: 16px;
+    z-index: 5;
+    transform: translate(-50%, -50%) rotate(-30deg);
+    animation: brushPaintOutline 2s ease-out 0.5s forwards;
     transform-origin: center center;
-    z-index: 3;
-    animation: brushRotate 1.2s ease-out 0.3s forwards;
-    opacity: 1;
+}
+
+.brush-head {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
+    transform: rotate(45deg);
 }
 
-.brush-handle {
-    width: 28px;
-    height: 11px;
-    background: linear-gradient(180deg, 
-        #4a3728 0%, 
-        #5c4333 15%, 
-        #6b4e3a 30%,
-        #5c4333 50%,
-        #4a3728 70%,
-        #3d2d20 100%
+.bristles {
+    width: 22px;
+    height: 28px;
+    background: linear-gradient(135deg,
+        #d4af37 0%,
+        #c9a432 20%,
+        #b8932a 40%,
+        #d4af37 60%,
+        #e8c55a 80%,
+        #d4af37 100%
     );
-    border-radius: 2px;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
     position: relative;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1px 2px rgba(0,0,0,0.3);
+    border-radius: 0 0 2px 2px;
 }
 
-.handle-grip {
+.bristle-strands {
     position: absolute;
-    top: 2px;
-    left: 3px;
-    right: 3px;
-    bottom: 2px;
+    inset: 0;
     background: repeating-linear-gradient(
-        90deg,
-        transparent,
+        180deg,
+        transparent 0px,
         transparent 2px,
-        rgba(0,0,0,0.15) 2px,
-        rgba(0,0,0,0.15) 3px
+        rgba(0,0,0,0.1) 2px,
+        rgba(0,0,0,0.1) 3px
     );
-    border-radius: 1px;
 }
 
-.brush-ferrule {
-    width: 8px;
-    height: 13px;
+.bristles::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 15%;
+    right: 15%;
+    height: 8px;
+    background: linear-gradient(180deg, 
+        rgba(212, 175, 55, 0.8) 0%,
+        rgba(184, 147, 42, 0.9) 100%
+    );
+    border-radius: 0 0 2px 2px;
+}
+
+.ferrule {
+    width: 26px;
+    height: 14px;
     background: linear-gradient(180deg,
         #c0c0c0 0%,
-        #e8e8e8 20%,
-        #d0d0d0 40%,
-        #a8a8a8 60%,
-        #909090 80%,
-        #787878 100%
+        #e8e8e8 15%,
+        #d8d8d8 30%,
+        #b0b0b0 50%,
+        #989898 70%,
+        #888888 85%,
+        #707070 100%
     );
-    border-radius: 1px;
+    margin-left: -2px;
     position: relative;
+    border-radius: 1px;
     box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-.brush-ferrule::before {
+.ferrule::before,
+.ferrule::after {
     content: '';
     position: absolute;
-    top: 2px;
-    left: 1px;
-    right: 1px;
-    height: 1px;
-    background: rgba(0,0,0,0.2);
-}
-
-.brush-ferrule::after {
-    content: '';
-    position: absolute;
-    bottom: 2px;
-    left: 1px;
-    right: 1px;
-    height: 1px;
-    background: rgba(0,0,0,0.2);
-}
-
-.brush-bristles {
-    width: 18px;
-    height: 14px;
-    background: linear-gradient(180deg,
-        #d4af37 0%,
-        #c9a432 30%,
-        #b8932a 60%,
-        #a68225 100%
-    );
-    border-radius: 1px 3px 4px 1px;
-    position: relative;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-.bristle-tip {
-    position: absolute;
-    right: -3px;
-    top: 2px;
-    bottom: 2px;
-    width: 4px;
-    background: linear-gradient(180deg,
-        #d4af37 0%,
-        #c9a432 50%,
-        #b8932a 100%
-    );
-    border-radius: 0 2px 2px 0;
-    opacity: 0.9;
-}
-
-.brush-bristles::before {
-    content: '';
-    position: absolute;
-    top: 1px;
     left: 2px;
     right: 2px;
-    bottom: 1px;
-    background: repeating-linear-gradient(
-        180deg,
-        transparent,
-        transparent 1px,
-        rgba(0,0,0,0.08) 1px,
-        rgba(0,0,0,0.08) 2px
+    height: 2px;
+    background: linear-gradient(90deg, 
+        rgba(0,0,0,0.3) 0%, 
+        rgba(255,255,255,0.2) 50%, 
+        rgba(0,0,0,0.3) 100%
     );
 }
 
-@keyframes brushRotate {
+.ferrule::before { top: 3px; }
+.ferrule::after { bottom: 3px; }
+
+.brush-handle {
+    margin-left: -2px;
+}
+
+.handle-wood {
+    width: 14px;
+    height: 55px;
+    background: linear-gradient(90deg,
+        #5c4333 0%,
+        #8b6914 15%,
+        #a07820 30%,
+        #8b6914 50%,
+        #7a5c12 70%,
+        #5c4333 100%
+    );
+    border-radius: 2px 2px 4px 4px;
+    position: relative;
+    box-shadow: inset -2px 0 4px rgba(0,0,0,0.2), 1px 1px 3px rgba(0,0,0,0.3);
+}
+
+.handle-wood::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    right: 4px;
+    bottom: 5px;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 8px,
+        rgba(0,0,0,0.05) 8px,
+        rgba(0,0,0,0.05) 10px
+    );
+}
+
+@keyframes brushPaintOutline {
     0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(46px);
+        transform: translate(-50%, -50%) rotate(0deg) translateX(70px);
         opacity: 1;
     }
-    85% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(46px);
+    80% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(70px);
+        opacity: 1;
+    }
+    90% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(90px);
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(60px);
+        transform: translate(-50%, -50%) rotate(360deg) translateX(110px);
         opacity: 0;
     }
 }
@@ -253,10 +259,10 @@ body {
 /* Logo with reveal mask */
 .loader-logo {
     position: absolute;
-    top: 4px;
-    left: 4px;
-    width: calc(100% - 8px);
-    height: calc(100% - 8px);
+    top: 5px;
+    left: 5px;
+    width: calc(100% - 10px);
+    height: calc(100% - 10px);
     border-radius: 50%;
     overflow: hidden;
     background: rgba(212, 175, 55, 0.1);
@@ -267,8 +273,8 @@ body {
     width: 100%;
     height: 100%;
     position: relative;
-    clip-path: inset(100% 0 0 0);
-    animation: revealLogo 0.6s ease-out 1.8s forwards;
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    animation: revealLogoDiagonal 1.8s ease-in-out 2.8s forwards;
 }
 
 .logo-reveal-mask img {
@@ -278,225 +284,229 @@ body {
     border-radius: 50%;
 }
 
-@keyframes revealLogo {
-    to {
-        clip-path: inset(0 0 0 0);
+@keyframes revealLogoDiagonal {
+    0% {
+        clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+    100% {
+        clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
     }
 }
 
-/* ===== Professional Paint Roller ===== */
+/* ===== Professional Paint Roller (Like Reference Image) ===== */
 .paint-roller {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -140%);
+    top: 0;
+    left: -60px;
     z-index: 4;
-    animation: rollerMove 1.6s ease-in-out 1.8s forwards;
+    animation: rollerDiagonal 1.8s ease-in-out 2.8s forwards;
     opacity: 0;
 }
 
-.roller-handle {
-    width: 8px;
-    height: 35px;
-    background: linear-gradient(90deg,
-        #3d3d3d 0%,
-        #5a5a5a 20%,
-        #4a4a4a 50%,
-        #3d3d3d 80%,
-        #2d2d2d 100%
-    );
-    border-radius: 3px 3px 0 0;
-    margin: 0 auto;
+.roller-assembly {
     position: relative;
-    box-shadow: 0 0 3px rgba(0,0,0,0.3);
+    transform: rotate(35deg);
 }
 
-.handle-grip-roller {
+/* Long pole handle */
+.roller-handle-pole {
+    width: 8px;
+    height: 70px;
+    background: linear-gradient(90deg,
+        #6b6b6b 0%,
+        #8a8a8a 20%,
+        #9a9a9a 40%,
+        #8a8a8a 60%,
+        #6b6b6b 100%
+    );
+    border-radius: 4px;
+    margin: 0 auto;
+    position: relative;
+    box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Orange rubber grip */
+.roller-grip {
     position: absolute;
     top: 5px;
-    left: 0;
-    right: 0;
-    height: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 14px;
+    height: 35px;
     background: linear-gradient(90deg,
-        #e74c3c 0%,
-        #ff6b5b 30%,
-        #e74c3c 50%,
-        #c0392b 80%,
-        #a33025 100%
+        #d35400 0%,
+        #e67e22 20%,
+        #f39c12 40%,
+        #e67e22 60%,
+        #d35400 100%
+    );
+    border-radius: 4px;
+    box-shadow: inset -1px 0 3px rgba(0,0,0,0.2);
+}
+
+.roller-grip::before {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 2px;
+    right: 2px;
+    bottom: 4px;
+    background: repeating-linear-gradient(
+        180deg,
+        transparent 0px,
+        transparent 3px,
+        rgba(0,0,0,0.1) 3px,
+        rgba(0,0,0,0.1) 5px
     );
     border-radius: 2px;
 }
 
-.handle-grip-roller::before {
+/* L-shaped metal frame */
+.roller-frame {
+    position: absolute;
+    top: 68px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 25px;
+}
+
+.roller-frame::before {
     content: '';
     position: absolute;
-    top: 3px;
-    left: 1px;
-    right: 1px;
-    bottom: 3px;
-    background: repeating-linear-gradient(
-        0deg,
-        transparent,
-        transparent 2px,
-        rgba(0,0,0,0.1) 2px,
-        rgba(0,0,0,0.1) 3px
-    );
-}
-
-.roller-frame {
-    position: relative;
-    width: 50px;
-    height: 15px;
-    margin-left: -21px;
-}
-
-.frame-arm {
-    position: absolute;
     top: 0;
-    left: 24px;
+    left: 50%;
+    transform: translateX(-50%);
     width: 6px;
-    height: 10px;
-    background: linear-gradient(90deg, #888 0%, #aaa 50%, #888 100%);
-    border-radius: 0 0 2px 2px;
+    height: 15px;
+    background: linear-gradient(90deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
+    border-radius: 2px;
 }
 
-.frame-bend {
+.roller-frame::after {
+    content: '';
     position: absolute;
-    top: 8px;
-    left: 4px;
-    width: 25px;
+    top: 12px;
+    left: 0;
+    width: 100%;
     height: 6px;
-    background: linear-gradient(180deg, #888 0%, #aaa 50%, #888 100%);
+    background: linear-gradient(180deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
     border-radius: 3px;
 }
 
-.frame-axle {
+/* Roller sleeve container */
+.roller-sleeve-container {
     position: absolute;
-    top: 6px;
-    left: 0;
-    width: 6px;
-    height: 12px;
-    background: linear-gradient(90deg, #666 0%, #888 50%, #666 100%);
-    border-radius: 2px;
-}
-
-.roller-cage {
-    position: relative;
-    width: 50px;
-    height: 20px;
-    margin-left: -21px;
-    margin-top: -3px;
+    top: 85px;
+    left: 50%;
+    transform: translateX(-50%);
 }
 
 .roller-sleeve {
-    width: 44px;
-    height: 18px;
+    width: 60px;
+    height: 24px;
     background: linear-gradient(180deg,
-        #f5f5f5 0%,
-        #e8e8e8 20%,
-        #f0f0f0 40%,
-        #e0e0e0 60%,
-        #d5d5d5 80%,
-        #c8c8c8 100%
+        #ffffff 0%,
+        #f5f5f5 10%,
+        #eeeeee 30%,
+        #e8e8e8 50%,
+        #e0e0e0 70%,
+        #d8d8d8 90%,
+        #cccccc 100%
     );
-    border-radius: 9px;
-    margin: 0 auto;
+    border-radius: 12px;
     position: relative;
     box-shadow: 
-        0 2px 4px rgba(0,0,0,0.2),
-        inset 0 1px 0 rgba(255,255,255,0.8);
-    overflow: hidden;
+        0 3px 6px rgba(0,0,0,0.2),
+        inset 0 2px 4px rgba(255,255,255,0.8),
+        inset 0 -2px 4px rgba(0,0,0,0.1);
 }
 
-.sleeve-texture {
+/* Fluffy texture on roller */
+.roller-sleeve::before {
+    content: '';
     position: absolute;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: repeating-linear-gradient(
-        90deg,
-        transparent,
-        transparent 1px,
-        rgba(0,0,0,0.03) 1px,
-        rgba(0,0,0,0.03) 2px
-    );
+    inset: 2px;
+    background: 
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0%, transparent 3%),
+        radial-gradient(circle at 60% 20%, rgba(255,255,255,0.6) 0%, transparent 2%),
+        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.7) 0%, transparent 3%),
+        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.5) 0%, transparent 2%),
+        radial-gradient(circle at 15% 80%, rgba(255,255,255,0.6) 0%, transparent 2%),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.7) 0%, transparent 3%);
+    border-radius: 10px;
 }
 
-.sleeve-texture:nth-child(1) { top: 3px; }
-.sleeve-texture:nth-child(2) { top: 8px; }
-.sleeve-texture:nth-child(3) { top: 13px; }
-
+/* Paint on roller */
 .roller-sleeve::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 5px;
-    right: 5px;
-    height: 6px;
+    left: 8px;
+    right: 8px;
+    height: 10px;
     background: linear-gradient(180deg,
-        rgba(212, 175, 55, 0.3) 0%,
+        rgba(212, 175, 55, 0.2) 0%,
+        rgba(212, 175, 55, 0.5) 50%,
         rgba(212, 175, 55, 0.7) 100%
     );
-    border-radius: 0 0 6px 6px;
+    border-radius: 0 0 8px 8px;
 }
 
-.roller-end-cap {
+/* End caps */
+.sleeve-end {
     position: absolute;
-    top: 1px;
-    width: 4px;
-    height: 16px;
-    background: linear-gradient(90deg, #333 0%, #555 50%, #333 100%);
-    border-radius: 2px;
+    top: 2px;
+    width: 6px;
+    height: 20px;
+    background: linear-gradient(90deg, #1a1a1a 0%, #3a3a3a 50%, #1a1a1a 100%);
+    border-radius: 3px;
 }
 
-.roller-end-cap.left { left: 0; }
-.roller-end-cap.right { right: 0; }
+.sleeve-end.left { left: -3px; }
+.sleeve-end.right { right: -3px; }
 
-.paint-drip {
-    position: absolute;
-    bottom: -8px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 4px;
-    height: 8px;
-    background: linear-gradient(180deg, 
-        rgba(212, 175, 55, 0.8) 0%,
-        rgba(212, 175, 55, 0.4) 100%
-    );
-    border-radius: 0 0 2px 2px;
-    animation: drip 0.4s ease-in 2.2s forwards;
-    opacity: 0;
-}
-
-@keyframes drip {
-    0% { opacity: 1; height: 4px; }
-    100% { opacity: 0; height: 12px; }
-}
-
-@keyframes rollerMove {
+/* Diagonal roller animation - left to right, two passes */
+@keyframes rollerDiagonal {
     0% {
         opacity: 1;
-        transform: translate(-50%, -140%);
+        top: -20px;
+        left: -70px;
     }
-    25% {
+    22% {
         opacity: 1;
-        transform: translate(-50%, 140%);
+        top: 140px;
+        left: 160px;
+    }
+    28% {
+        opacity: 1;
+        top: 140px;
+        left: 160px;
     }
     50% {
         opacity: 1;
-        transform: translate(-50%, -140%);
+        top: -20px;
+        left: -70px;
     }
-    75% {
+    56% {
         opacity: 1;
-        transform: translate(-50%, 140%);
+        top: -20px;
+        left: -70px;
+    }
+    78% {
+        opacity: 1;
+        top: 140px;
+        left: 160px;
     }
     90% {
         opacity: 1;
-        transform: translate(-50%, 140%);
+        top: 160px;
+        left: 180px;
     }
     100% {
         opacity: 0;
-        transform: translate(-50%, 140%);
+        top: 180px;
+        left: 200px;
     }
 }
 
@@ -539,7 +549,7 @@ body {
     width: 0%;
     background: var(--gold);
     border-radius: 2px;
-    animation: loadProgress 3.8s ease-out forwards;
+    animation: loadProgress 5.5s ease-out forwards;
 }
 
 @keyframes loadProgress {
@@ -1915,9 +1925,9 @@ footer {
         font-size: 1.4rem;
     }
     
-    .loader-logo {
-        width: 60px;
-        height: 60px;
+    .loader-logo-container {
+        width: 120px;
+        height: 120px;
     }
 }
 

@@ -107,151 +107,200 @@ body {
     }
 }
 
-/* ===== Traditional Angled Decorator's Brush ===== */
+/* ===== Professional Angled Brush (Matching Reference) ===== */
 .paint-brush {
     position: absolute;
     top: 50%;
     left: 50%;
     z-index: 5;
-    transform: translate(-50%, -50%) rotate(-30deg);
-    animation: brushPaintOutline 2s ease-out 0.5s forwards;
-    transform-origin: center center;
-}
-
-.brush-head {
     display: flex;
-    align-items: flex-end;
-    transform: rotate(45deg);
+    flex-direction: column;
+    align-items: center;
+    transform: translate(-50%, -50%) rotate(-45deg);
+    animation: brushPaintOutline 2.5s ease-in-out 0.3s forwards;
 }
 
-.bristles {
-    width: 22px;
-    height: 28px;
-    background: linear-gradient(135deg,
-        #d4af37 0%,
-        #c9a432 20%,
-        #b8932a 40%,
-        #d4af37 60%,
-        #e8c55a 80%,
-        #d4af37 100%
+/* Dark purple/brown bristles - angled */
+.brush-bristles {
+    width: 28px;
+    height: 38px;
+    background: linear-gradient(180deg,
+        #2d1f2d 0%,
+        #3d2a3a 20%,
+        #2d1f2d 40%,
+        #4a3545 60%,
+        #2d1f2d 80%,
+        #1f151f 100%
     );
-    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+    clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
     position: relative;
-    border-radius: 0 0 2px 2px;
 }
 
-.bristle-strands {
+/* Bristle texture lines */
+.brush-bristles::before {
+    content: '';
     position: absolute;
     inset: 0;
     background: repeating-linear-gradient(
-        180deg,
+        90deg,
         transparent 0px,
-        transparent 2px,
-        rgba(0,0,0,0.1) 2px,
-        rgba(0,0,0,0.1) 3px
+        transparent 1px,
+        rgba(0,0,0,0.2) 1px,
+        rgba(0,0,0,0.2) 2px
     );
 }
 
-.bristles::after {
+/* Gold paint on bristle tips */
+.brush-bristles::after {
     content: '';
     position: absolute;
     bottom: 0;
-    left: 15%;
-    right: 15%;
-    height: 8px;
-    background: linear-gradient(180deg, 
-        rgba(212, 175, 55, 0.8) 0%,
-        rgba(184, 147, 42, 0.9) 100%
+    left: 0;
+    right: 0;
+    height: 12px;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(212, 175, 55, 0.6) 40%,
+        rgba(212, 175, 55, 0.9) 100%
     );
-    border-radius: 0 0 2px 2px;
 }
 
-.ferrule {
-    width: 26px;
-    height: 14px;
+/* Silver metal ferrule */
+.brush-ferrule {
+    width: 32px;
+    height: 22px;
     background: linear-gradient(180deg,
-        #c0c0c0 0%,
-        #e8e8e8 15%,
-        #d8d8d8 30%,
-        #b0b0b0 50%,
-        #989898 70%,
-        #888888 85%,
-        #707070 100%
+        #a8a8a8 0%,
+        #d8d8d8 10%,
+        #c0c0c0 25%,
+        #e8e8e8 40%,
+        #b8b8b8 55%,
+        #d0d0d0 70%,
+        #a0a0a0 85%,
+        #888888 100%
     );
-    margin-left: -2px;
     position: relative;
     border-radius: 1px;
-    box-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
-.ferrule::before,
-.ferrule::after {
-    content: '';
+.ferrule-line {
     position: absolute;
     left: 2px;
     right: 2px;
     height: 2px;
-    background: linear-gradient(90deg, 
-        rgba(0,0,0,0.3) 0%, 
-        rgba(255,255,255,0.2) 50%, 
-        rgba(0,0,0,0.3) 100%
-    );
-}
-
-.ferrule::before { top: 3px; }
-.ferrule::after { bottom: 3px; }
-
-.brush-handle {
-    margin-left: -2px;
-}
-
-.handle-wood {
-    width: 14px;
-    height: 55px;
     background: linear-gradient(90deg,
-        #5c4333 0%,
-        #8b6914 15%,
-        #a07820 30%,
-        #8b6914 50%,
-        #7a5c12 70%,
-        #5c4333 100%
+        rgba(0,0,0,0.2) 0%,
+        rgba(255,255,255,0.3) 50%,
+        rgba(0,0,0,0.2) 100%
     );
-    border-radius: 2px 2px 4px 4px;
-    position: relative;
-    box-shadow: inset -2px 0 4px rgba(0,0,0,0.2), 1px 1px 3px rgba(0,0,0,0.3);
 }
 
-.handle-wood::before {
+.ferrule-line:first-child { top: 5px; }
+.ferrule-line:nth-child(2) { top: 14px; }
+
+.ferrule-rivets {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 0 6px;
+}
+
+.ferrule-rivets span {
+    width: 3px;
+    height: 3px;
+    background: radial-gradient(circle at 30% 30%, #666, #333);
+    border-radius: 50%;
+}
+
+/* Light wooden handle */
+.brush-handle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.handle-neck {
+    width: 24px;
+    height: 12px;
+    background: linear-gradient(180deg,
+        #c4a574 0%,
+        #d4b584 50%,
+        #c4a574 100%
+    );
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+}
+
+.handle-grip {
+    width: 18px;
+    height: 50px;
+    background: linear-gradient(90deg,
+        #b8956a 0%,
+        #d4b078 15%,
+        #e8c88c 30%,
+        #d4b078 50%,
+        #c4a068 70%,
+        #b8956a 100%
+    );
+    border-radius: 2px 2px 6px 6px;
+    position: relative;
+}
+
+/* Textured grip pattern */
+.handle-grip::before {
     content: '';
     position: absolute;
     top: 5px;
     left: 2px;
-    right: 4px;
-    bottom: 5px;
-    background: repeating-linear-gradient(
-        180deg,
-        transparent 0px,
-        transparent 8px,
-        rgba(0,0,0,0.05) 8px,
-        rgba(0,0,0,0.05) 10px
-    );
+    right: 2px;
+    bottom: 15px;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 90, 43, 0.3) 2px,
+            rgba(139, 90, 43, 0.3) 4px
+        ),
+        repeating-linear-gradient(
+            -45deg,
+            transparent,
+            transparent 2px,
+            rgba(139, 90, 43, 0.3) 2px,
+            rgba(139, 90, 43, 0.3) 4px
+        );
+    border-radius: 2px;
+}
+
+.handle-hole {
+    position: absolute;
+    bottom: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 6px;
+    height: 6px;
+    background: var(--black);
+    border-radius: 50%;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.5);
 }
 
 @keyframes brushPaintOutline {
     0% {
-        transform: translate(-50%, -50%) rotate(0deg) translateX(70px);
+        transform: translate(-50%, -50%) rotate(0deg) translateX(75px) rotate(-90deg);
         opacity: 1;
     }
-    80% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(70px);
+    75% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(75px) rotate(-90deg);
         opacity: 1;
     }
-    90% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(90px);
+    85% {
+        transform: translate(-50%, -50%) rotate(360deg) translateX(95px) rotate(-90deg);
         opacity: 1;
     }
     100% {
-        transform: translate(-50%, -50%) rotate(360deg) translateX(110px);
+        transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-90deg);
         opacity: 0;
     }
 }
@@ -274,7 +323,7 @@ body {
     height: 100%;
     position: relative;
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-    animation: revealLogoDiagonal 1.8s ease-in-out 2.8s forwards;
+    animation: revealLogoDiagonal 2s ease-in-out 3s forwards;
 }
 
 .logo-reveal-mask img {
@@ -293,220 +342,225 @@ body {
     }
 }
 
-/* ===== Professional Paint Roller (Like Reference Image) ===== */
+/* ===== Professional Paint Roller (Matching Reference) ===== */
 .paint-roller {
     position: absolute;
-    top: 0;
-    left: -60px;
+    top: -30px;
+    left: -80px;
     z-index: 4;
-    animation: rollerDiagonal 1.8s ease-in-out 2.8s forwards;
+    animation: rollerDiagonal 2s ease-in-out 3s forwards;
     opacity: 0;
+    transform: rotate(45deg);
 }
 
-.roller-assembly {
-    position: relative;
-    transform: rotate(35deg);
+/* Red handle pole with black and silver sections */
+.roller-pole {
+    width: 10px;
+    height: 60px;
+    margin: 0 auto 0 20px;
+    display: flex;
+    flex-direction: column;
 }
 
-/* Long pole handle */
-.roller-handle-pole {
-    width: 8px;
-    height: 70px;
-    background: linear-gradient(90deg,
-        #6b6b6b 0%,
-        #8a8a8a 20%,
-        #9a9a9a 40%,
-        #8a8a8a 60%,
-        #6b6b6b 100%
-    );
-    border-radius: 4px;
-    margin: 0 auto;
-    position: relative;
-    box-shadow: 1px 2px 4px rgba(0,0,0,0.3);
-}
-
-/* Orange rubber grip */
-.roller-grip {
-    position: absolute;
-    top: 5px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 14px;
+.pole-red {
+    width: 100%;
     height: 35px;
     background: linear-gradient(90deg,
-        #d35400 0%,
-        #e67e22 20%,
-        #f39c12 40%,
-        #e67e22 60%,
-        #d35400 100%
+        #c0281e 0%,
+        #e63428 20%,
+        #ff4136 40%,
+        #e63428 60%,
+        #c0281e 100%
     );
-    border-radius: 4px;
-    box-shadow: inset -1px 0 3px rgba(0,0,0,0.2);
+    border-radius: 3px 3px 0 0;
 }
 
-.roller-grip::before {
-    content: '';
-    position: absolute;
-    top: 4px;
-    left: 2px;
-    right: 2px;
-    bottom: 4px;
-    background: repeating-linear-gradient(
-        180deg,
-        transparent 0px,
-        transparent 3px,
-        rgba(0,0,0,0.1) 3px,
-        rgba(0,0,0,0.1) 5px
+.pole-black {
+    width: 100%;
+    height: 12px;
+    background: linear-gradient(90deg,
+        #1a1a1a 0%,
+        #3a3a3a 50%,
+        #1a1a1a 100%
     );
-    border-radius: 2px;
 }
 
-/* L-shaped metal frame */
+.pole-silver {
+    width: 100%;
+    height: 13px;
+    background: linear-gradient(90deg,
+        #888 0%,
+        #c0c0c0 30%,
+        #e0e0e0 50%,
+        #c0c0c0 70%,
+        #888 100%
+    );
+    border-radius: 0 0 2px 2px;
+}
+
+/* U-shaped silver metal frame */
 .roller-frame {
-    position: absolute;
-    top: 68px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 50px;
-    height: 25px;
+    position: relative;
+    width: 70px;
+    height: 30px;
+    margin-left: -10px;
 }
 
-.roller-frame::before {
-    content: '';
+.frame-arm-left,
+.frame-arm-right {
     position: absolute;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     width: 6px;
-    height: 15px;
-    background: linear-gradient(90deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
+    height: 30px;
+    background: linear-gradient(90deg,
+        #808080 0%,
+        #b0b0b0 30%,
+        #d0d0d0 50%,
+        #b0b0b0 70%,
+        #808080 100%
+    );
+    border-radius: 3px;
+}
+
+.frame-arm-left { left: 8px; }
+.frame-arm-right { right: 8px; }
+
+.frame-bend {
+    position: absolute;
+    top: 0;
+    left: 8px;
+    right: 8px;
+    height: 6px;
+    background: linear-gradient(180deg,
+        #808080 0%,
+        #c0c0c0 50%,
+        #808080 100%
+    );
+    border-radius: 3px 3px 0 0;
+}
+
+/* White roller cylinder with blue stripes */
+.roller-cylinder {
+    width: 70px;
+    height: 26px;
+    margin-left: -10px;
+    margin-top: -4px;
+    position: relative;
+    animation: cylinderSpin 0.3s linear infinite;
+    animation-play-state: paused;
+}
+
+.cylinder-sleeve {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg,
+        #ffffff 0%,
+        #f8f8f8 20%,
+        #f0f0f0 40%,
+        #f8f8f8 60%,
+        #ffffff 80%,
+        #e8e8e8 100%
+    );
+    border-radius: 13px;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 
+        0 3px 8px rgba(0,0,0,0.2),
+        inset 0 2px 4px rgba(255,255,255,0.9);
+}
+
+/* Blue diagonal stripes */
+.cylinder-sleeve .stripe {
+    position: absolute;
+    width: 200%;
+    height: 4px;
+    background: rgba(70, 130, 180, 0.5);
+    transform: rotate(-25deg);
+    transform-origin: left center;
+}
+
+.cylinder-sleeve .stripe:nth-child(1) { top: 2px; left: -20px; }
+.cylinder-sleeve .stripe:nth-child(2) { top: 8px; left: -10px; }
+.cylinder-sleeve .stripe:nth-child(3) { top: 14px; left: 0px; }
+.cylinder-sleeve .stripe:nth-child(4) { top: 20px; left: 10px; }
+.cylinder-sleeve .stripe:nth-child(5) { top: 26px; left: 20px; }
+
+/* Fluffy texture */
+.cylinder-sleeve::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.8) 0%, transparent 4%),
+        radial-gradient(circle at 30% 60%, rgba(255,255,255,0.6) 0%, transparent 3%),
+        radial-gradient(circle at 50% 30%, rgba(255,255,255,0.7) 0%, transparent 4%),
+        radial-gradient(circle at 70% 70%, rgba(255,255,255,0.5) 0%, transparent 3%),
+        radial-gradient(circle at 90% 40%, rgba(255,255,255,0.6) 0%, transparent 4%);
+    border-radius: 13px;
+}
+
+/* Dark end caps */
+.cylinder-end {
+    position: absolute;
+    top: 3px;
+    width: 5px;
+    height: 20px;
+    background: linear-gradient(90deg,
+        #1a1a1a 0%,
+        #3a3a3a 50%,
+        #1a1a1a 100%
+    );
     border-radius: 2px;
 }
 
-.roller-frame::after {
-    content: '';
-    position: absolute;
-    top: 12px;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(180deg, #2a2a2a 0%, #4a4a4a 50%, #2a2a2a 100%);
-    border-radius: 3px;
+.cylinder-end.left { left: -2px; }
+.cylinder-end.right { right: -2px; }
+
+/* Cylinder spinning animation */
+@keyframes cylinderSpin {
+    0% {
+        background-position: 0 0;
+    }
+    100% {
+        background-position: 20px 0;
+    }
 }
 
-/* Roller sleeve container */
-.roller-sleeve-container {
-    position: absolute;
-    top: 85px;
-    left: 50%;
-    transform: translateX(-50%);
-}
-
-.roller-sleeve {
-    width: 60px;
-    height: 24px;
-    background: linear-gradient(180deg,
-        #ffffff 0%,
-        #f5f5f5 10%,
-        #eeeeee 30%,
-        #e8e8e8 50%,
-        #e0e0e0 70%,
-        #d8d8d8 90%,
-        #cccccc 100%
-    );
-    border-radius: 12px;
-    position: relative;
-    box-shadow: 
-        0 3px 6px rgba(0,0,0,0.2),
-        inset 0 2px 4px rgba(255,255,255,0.8),
-        inset 0 -2px 4px rgba(0,0,0,0.1);
-}
-
-/* Fluffy texture on roller */
-.roller-sleeve::before {
-    content: '';
-    position: absolute;
-    inset: 2px;
-    background: 
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.8) 0%, transparent 3%),
-        radial-gradient(circle at 60% 20%, rgba(255,255,255,0.6) 0%, transparent 2%),
-        radial-gradient(circle at 80% 60%, rgba(255,255,255,0.7) 0%, transparent 3%),
-        radial-gradient(circle at 40% 70%, rgba(255,255,255,0.5) 0%, transparent 2%),
-        radial-gradient(circle at 15% 80%, rgba(255,255,255,0.6) 0%, transparent 2%),
-        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.7) 0%, transparent 3%);
-    border-radius: 10px;
-}
-
-/* Paint on roller */
-.roller-sleeve::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 8px;
-    right: 8px;
-    height: 10px;
-    background: linear-gradient(180deg,
-        rgba(212, 175, 55, 0.2) 0%,
-        rgba(212, 175, 55, 0.5) 50%,
-        rgba(212, 175, 55, 0.7) 100%
-    );
-    border-radius: 0 0 8px 8px;
-}
-
-/* End caps */
-.sleeve-end {
-    position: absolute;
-    top: 2px;
-    width: 6px;
-    height: 20px;
-    background: linear-gradient(90deg, #1a1a1a 0%, #3a3a3a 50%, #1a1a1a 100%);
-    border-radius: 3px;
-}
-
-.sleeve-end.left { left: -3px; }
-.sleeve-end.right { right: -3px; }
-
-/* Diagonal roller animation - left to right, two passes */
+/* Diagonal roller animation - left to right, two passes with rolling */
 @keyframes rollerDiagonal {
     0% {
         opacity: 1;
-        top: -20px;
-        left: -70px;
+        top: -30px;
+        left: -80px;
     }
-    22% {
+    5% {
         opacity: 1;
-        top: 140px;
-        left: 160px;
     }
-    28% {
-        opacity: 1;
-        top: 140px;
-        left: 160px;
+    25% {
+        top: 130px;
+        left: 150px;
     }
-    50% {
-        opacity: 1;
-        top: -20px;
-        left: -70px;
+    35% {
+        top: 130px;
+        left: 150px;
     }
-    56% {
-        opacity: 1;
-        top: -20px;
-        left: -70px;
+    60% {
+        top: -30px;
+        left: -80px;
     }
-    78% {
-        opacity: 1;
-        top: 140px;
-        left: 160px;
+    70% {
+        top: -30px;
+        left: -80px;
     }
     90% {
         opacity: 1;
-        top: 160px;
-        left: 180px;
+        top: 130px;
+        left: 150px;
     }
     100% {
         opacity: 0;
-        top: 180px;
-        left: 200px;
+        top: 150px;
+        left: 170px;
     }
 }
 
@@ -549,7 +603,7 @@ body {
     width: 0%;
     background: var(--gold);
     border-radius: 2px;
-    animation: loadProgress 5.5s ease-out forwards;
+    animation: loadProgress 5.8s ease-out forwards;
 }
 
 @keyframes loadProgress {

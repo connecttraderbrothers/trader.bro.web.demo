@@ -6,7 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     document.body.classList.add('loading');
     
-    // Hide loading screen after paint animation completes (brush + 2 roller passes)
+    // Hide loading screen after paint animation completes
     setTimeout(() => {
         loadingScreen.classList.add('hidden');
         document.body.classList.remove('loading');
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.classList.add('revealed');
             });
         }, 300);
-    }, 4000);
+    }, 5800);
 
     // ===== DOM Elements =====
     const hamburger = document.querySelector('.hamburger');

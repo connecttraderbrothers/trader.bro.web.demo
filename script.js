@@ -3,8 +3,23 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ===== Loading Screen =====
     const loadingScreen = document.getElementById('loadingScreen');
+    const rollerCylinder = document.querySelector('.roller-cylinder');
     
     document.body.classList.add('loading');
+    
+    // Start roller spinning when roller animation begins
+    setTimeout(() => {
+        if (rollerCylinder) {
+            rollerCylinder.style.animationPlayState = 'running';
+        }
+    }, 3000);
+    
+    // Stop roller spinning when animation ends
+    setTimeout(() => {
+        if (rollerCylinder) {
+            rollerCylinder.style.animationPlayState = 'paused';
+        }
+    }, 5000);
     
     // Hide loading screen after paint animation completes
     setTimeout(() => {
@@ -17,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 el.classList.add('revealed');
             });
         }, 300);
-    }, 5800);
+    }, 6000);
 
     // ===== DOM Elements =====
     const hamburger = document.querySelector('.hamburger');
